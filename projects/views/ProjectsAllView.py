@@ -20,7 +20,7 @@ class ProjectsAllView(APIView):
 
     def post(self, request):
         # print(request.data)
-        user_id = request.data['user_id']
+        user_id = request.GET.get('user_id', '')
         project_title = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-" + request.data['title']
         project_description = request.data['description']
         project_type = request.data['type']

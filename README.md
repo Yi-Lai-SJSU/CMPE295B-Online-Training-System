@@ -1,4 +1,1 @@
-# CMPE295B-Online-Training-System
-# CMPE295B-Online-Training-System
-# CMPE295B-Online-Training-System
-# CMPE295B-Online-Training-System
+docker-compose up --build --force-recreate

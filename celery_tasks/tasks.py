@@ -28,7 +28,6 @@ def train_mode(param1, param2):
     project_folder = getProjectFolder(param2)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-"
     train(project_folder, timestamp)
-
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     print(param2)
 
@@ -38,7 +37,7 @@ def train_mode(param1, param2):
     Project = apps.get_model(app_label='projects', model_name='project')
     User = apps.get_model(app_label='auth', model_name='User')
     user = User.objects.get(id=param2[0])
-    project = Project.objects.get(user=user, title=param2[1])
+    project = Project.objects.get(id=param2[1])
     print(user.id)
     print(user.username)
     print(project.title)
@@ -47,24 +46,19 @@ def train_mode(param1, param2):
                                  location=project.location + "models/" + timestamp + "-keras.h5",
                                  label_location=project.location + "models/" + timestamp + "-classLabel.txt",
                                  url=settings.MEDIA_URL_DATADASE + "models/" + timestamp + "-keras.h5",
-                                 description="default",
+                                 description="Customized Model",
                                  type=param2[2],
                                  user=user,
                                  project=project,
                                  isPublic=True)
     model.save()
-
     locationOfModel = os.path.abspath(os.path.dirname(__file__))
     print(locationOfModel)
-
-
     return "success"
 
 def getProjectFolder(param2):
     project_folder = settings.MEDIA_ROOT + str(param2[0]) + "/" + param2[1] + "/"
     return project_folder
-    
-
 
 
 

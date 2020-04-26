@@ -22,7 +22,7 @@ class ImagesByTagsView(APIView):
         project_id = request.GET.get('project_id', '')
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
-        images = MyImage.objects.filter(user=user, project=project, type=image_tag)
+        images = MyImage.objects.filter(user=user, project=project, type=image_tag.lower())
         serializer = ImageSerializer(images, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -30,11 +30,11 @@ class ImagesByTagsView(APIView):
         user_id = request.GET.get('user_id', '')
         project_id = request.GET.get('project_id', '')
         uploaded_files = request.FILES.getlist('files')
-
+        image_tag = image_tag.lower()
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-"
-        image_folder = settings.MEDIA_ROOT + project.location + "images/" + image_tag + "/"
+        image_folder = settings.MEDIA_ROOT + project.location + "images/" + image_tag.lower() + "/"
         if not os.path.exists(image_folder):
             os.makedirs(image_folder)
         fs = FileSystemStorage(location=image_folder)
@@ -44,10 +44,10 @@ class ImagesByTagsView(APIView):
             image_title = timestamp + str(index) + ".jpg"
             fs.save(image_title, image)
             new_image = MyImage(title=image_title,
-                                location=project.location + "images/" + image_tag + "/" + image_title,
-                                url=settings.MEDIA_URL_DATADASE + project.location + "images/" + image_tag + "/" + image_title,
+                                location=project.location + "images/" + image_tag.lower() + "/" + image_title,
+                                url=settings.MEDIA_URL_DATADASE + project.location + "images/" + image_tag.lower() + "/" + image_title,
                                 description="default",
-                                type=image_tag,
+                                type=image_tag.lower(),
                                 user=user,
                                 project=project,
                                 isTrain=True)
@@ -60,20 +60,22 @@ class ImagesByTagsView(APIView):
         project_id = request.GET.get('project_id', '')
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
-        new_image_type = request.GET.get('type', '')
+        new_image_type = request.GET.get('type', '').lower()
+        image_tag = image_tag.lower()
         print("Image tag: ", image_tag)
-        images = MyImage.objects.filter(user=user, project=project, type=image_tag)
+        images = MyImage.objects.filter(user=user, project=project, type=image_tag.lower())
         print(images)
+
+        if image_tag.lower() == new_image_type.lower():
+            return HttpResponse(content="Same collection", status="406")
 
         print("Old tag: ", image_tag)
         print("New tag: ", new_image_type)
 
         new_image_folder = settings.MEDIA_ROOT + project.location + "images/" + new_image_type + "/"
-        old_image_folder = settings.MEDIA_ROOT + project.location + "images/" + image_tag + "/"
-
+        old_image_folder = settings.MEDIA_ROOT + project.location + "images/" + image_tag.lower() + "/"
         if not os.path.exists(new_image_folder):
             os.makedirs(new_image_folder)
-
         with transaction.atomic():
             for image in images:
                 new_image_path = settings.MEDIA_ROOT + image.project.location + "images/" + new_image_type + "/" + image.title
@@ -98,6 +100,7 @@ class ImagesByTagsView(APIView):
         project_id = request.GET.get('project_id', '')
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
+        image_tag = image_tag.lower()
         images = MyImage.objects.filter(user=user, project=project, type=image_tag)
         with transaction.atomic():
             for image in images:

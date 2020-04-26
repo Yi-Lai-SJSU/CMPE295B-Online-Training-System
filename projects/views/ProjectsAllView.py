@@ -13,7 +13,8 @@ class ProjectsAllView(APIView):
     def get(self, request):
         user_id = request.GET.get('user_id', '')
         print(user_id)
-        projects = Project.objects.filter(user=User.objects.get(id=user_id))
+        user = User.objects.get(id=user_id)
+        projects = Project.objects.filter(user=user)
         print(projects)
         serializer = ProjectSerializer(projects, many=True)
         return JsonResponse(serializer.data, safe=False)
@@ -21,10 +22,20 @@ class ProjectsAllView(APIView):
     def post(self, request):
         # print(request.data)
         user_id = request.GET.get('user_id', '')
-        project_title = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-" + request.data['title']
+        user = User.objects.get(id=user_id)
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
+        project_title = request.data['title']
         project_description = request.data['description']
         project_type = request.data['type']
-        project_path = settings.MEDIA_ROOT + str(user_id) + "/" + project_title + "/"
+
+        project = Project(title=project_title,
+                          location="not yet decided",
+                          description=project_description,
+                          type=project_type,
+                          create_time=datetime.datetime.now(),
+                          user=user)
+        project.save()
+        project_path = settings.MEDIA_ROOT + str(user_id) + "/" + str(project.id) + "/"
         print(project_path)
         if not os.path.exists(project_path):
             os.makedirs(project_path)
@@ -36,13 +47,7 @@ class ProjectsAllView(APIView):
             os.makedirs(image_default_path)
             model_path = project_path + "models/"
             os.makedirs(model_path)
-            project = Project(title=project_title,
-                              location=str(user_id) + "/" + project_title + "/",
-                              description=project_description,
-                              type=project_type,
-                              user=User.objects.get(id=user_id)
-                              )
+            project.location = str(user_id) + "/" + str(project.id) + "/",
             project.save()
             serializer = ProjectSerializer(project, many=False)
             return JsonResponse(serializer.data, safe=False)
-

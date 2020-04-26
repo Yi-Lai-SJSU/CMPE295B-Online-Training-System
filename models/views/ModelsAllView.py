@@ -50,14 +50,22 @@ class ModelsAllView(APIView):
         serializer = ModelSerializer(models, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-    def put(self, request):
+    def post(self, request):
+        method = request.GET.get('method', '')
+        if method == "create":
+            return self.createModel(request)
+        elif method == "upload":
+            return self.uploadModel(request)
+        else:
+            return HttpResponse("Only allowed create and upload method", status=400)
+
+    def createModel(self, request):
         print("receive training model....")
         user_id = request.GET.get('user_id', '')
-        project_title = request.GET.get('project_title', '')
+        project_id = request.GET.get('project_id', '')
         type = request.data['type']
         print(type)
         uploaded_files = request.FILES.getlist('files')
-
         locationOfModel = "/code/celery_tasks/"
         print(locationOfModel)
         fs = FileSystemStorage(location=locationOfModel)
@@ -71,11 +79,12 @@ class ModelsAllView(APIView):
         # user = User.objects.get(id=user_id)
         # project = Project.objects.get(user=user, title=project_title)
         print("************************************************")
-        train_mode.delay((user_id, project_title, type),)
+        print(project_id)
+        train_mode.delay((user_id, project_id, type), )
         print("************************************************")
-        return HttpResponse("training Models")
+        return HttpResponse(content="Upload Models", status=200)
 
-    def post(self, request):
+    def uploadModel(self, request):
         print("POST received - return done")
         uploaded_files = request.FILES.getlist('files')
         print("*************************************************************************")
@@ -88,12 +97,12 @@ class ModelsAllView(APIView):
         fileName = str(user.id) + "+" + project.title + "+" + timestamp + request.data['title']
         print(fileName)
 
-        model = Model(title=fileName+".h5",
+        model = Model(title=fileName + ".h5",
                       description=request.data['description'],
                       type=request.data['type'],
                       isPublic=True,
-                      location=project.location + "models/"+fileName+".h5",
-                      label_location=project.location + "models/"+fileName+".txt",
+                      location=project.location + "models/" + fileName + ".h5",
+                      label_location=project.location + "models/" + fileName + ".txt",
                       url=settings.MEDIA_URL_DATADASE + project.location + "models/" + fileName + ".h5",
                       user=user,
                       project=project)
@@ -101,7 +110,7 @@ class ModelsAllView(APIView):
         # save to file system
         locationOfModel = settings.MEDIA_ROOT + project.location + "models/"
         fs = FileSystemStorage(location=locationOfModel)
-        fs.save(fileName+".h5",  uploaded_files[0])
-        fs.save(fileName+".txt", uploaded_files[1])
+        fs.save(fileName + ".h5", uploaded_files[0])
+        fs.save(fileName + ".txt", uploaded_files[1])
         print("**********************")
-        return HttpResponse("Upload Models")
+        return HttpResponse(content="Upload Models", status=200)

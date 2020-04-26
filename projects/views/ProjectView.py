@@ -16,6 +16,13 @@ class ProjectView(APIView):
         serializer = ProjectSerializer(project, many=False)
         return JsonResponse(serializer.data, safe=False)
 
+    def put(self, request, project_id):
+        project = Project.objects.get(id=project_id)
+        project.description = request.GET.get('description', '')
+        project.save()
+        serializer = ProjectSerializer(project, many=False)
+        return JsonResponse(serializer.data, safe=False)
+
     def delete(self, request, project_id):
         # print(request.data)
         project = Project.objects.get(id=project_id)

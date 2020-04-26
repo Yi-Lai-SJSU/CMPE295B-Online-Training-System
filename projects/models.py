@@ -7,3 +7,4 @@ class Project(models.Model):
     description = models.CharField(max_length=32)
     type = models.CharField(max_length=32)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    create_time = models.DateTimeField(auto_now=False, null=True)

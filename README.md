@@ -1,6 +1,3 @@
-docker-compose up --build --force-recreate
-
-
 1. Project module:
 (1) API  - GET   http://localhost:8000/projects/all?user_id=25
      Description - Get all the projects under user(25)
@@ -8,7 +5,9 @@ docker-compose up --build --force-recreate
       Description - Add a new project under user(25)
 (3) API -  Get http://localhost:8000/projects/45
       Description - Get the information of project(45) 
-(3) API -  Delete http://localhost:8000/projects/45
+(4) API -  Put http://localhost:8000/projects/45?description=My second project
+      Description - Update the description of project(45) to "My second project"
+(5) API -  Delete http://localhost:8000/projects/45
       Description - Delete the project(45) 
 2. Videos module:
             (1) API  - GET   http://localhost:8000/videos/all?user_id=25&project_id=45
@@ -22,11 +21,23 @@ docker-compose up --build --force-recreate
 3. Models module:
 (1) API  - GET   http://localhost:8000/models/all?user_id=25&project_id=45
      Description - Get all the models in project(45) under user(25)
-(2) API -  POST http://localhost:8000/models/all?user_id=25&project_id=45
+(2) API -  POST http://localhost:8000/models/all?user_id=25&project_id=45&method=upload
       Description - Post a model in project(45) under user(25)
-(3) API -  PUT http://localhost:8000/models/all?user_id=25&project_id=45
+      Body：
+               request.data['title']  
+               request.data['description']
+               request.data['type']     //Classification
+               uploaded_files = request.FILES.getlist('files')  
+               //  uploaded_files[0] is .h5 file,  uploaded_files[1] is classLabel.txt
+(3) API -  POST http://localhost:8000/models/all?user_id=25&project_id=45&method=create
       Description - Train a new model
-(4) API -  Get http://localhost:8000/models/60
+      Body：
+                request.data['title']
+                request.data['description']
+                request.data['type']   //Classification
+                uploaded_files = request.FILES.getlist('files')  
+                // uploaded_files[0] is python file
+            (4) API -  Get http://localhost:8000/models/60
       Description - Get the video by ID
 (5) API -  http://localhost:8000/models/60
       Description - Delete the video by ID  
@@ -44,3 +55,15 @@ docker-compose up --build --force-recreate
       Description - Change all the images tagged by Cat to Student
 (6) API -  DELETE http://localhost:8000/images/Cat?user_id=25&project_id=45
       Description - DELETE all the images tagged by Cat in project(45) under user(25)
+(7) API -  Get http://localhost:8000/images/byVideo/121
+     Description - Get all the images from video 121
+(8) API - POST http://localhost:8000/images/predict
+     Description - Predict all the tags by images
+(9) API - GET  http://localhost:8000/images/type?user_id=25&project_id=45
+     Description - GET all the tags
+(10) API - GET http://127.0.0.1:8000/images/632
+       Description - GET image by ID
+(11) API - DELETE http://127.0.0.1:8000/images/632
+       Description - Delete image by ID
+(12) API - PUT http://127.0.0.1:8000/images/630?type=cat
+       Description - change the tag of image(630) to cat

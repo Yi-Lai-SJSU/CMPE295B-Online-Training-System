@@ -77,7 +77,7 @@ class VideosAllView(APIView):
         fs.save(timestamp + uploaded_file.name, uploaded_file)
 
         videoFile = locationOfVideos + timestamp + uploaded_file.name
-        video = Video(title=timestamp + uploaded_file.name,
+        video = Video(title=uploaded_file.name,
                       description="default",
                       location=project.location + "videos/" + timestamp + uploaded_file.name,
                       url=settings.MEDIA_URL_DATADASE + project.location + "videos/" + timestamp + uploaded_file.name,

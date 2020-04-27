@@ -27,6 +27,7 @@ class ImagesByTagsView(APIView):
         return JsonResponse(serializer.data, safe=False)
 
     def post(self, request, image_tag):
+        print("tags")
         user_id = request.GET.get('user_id', '')
         project_id = request.GET.get('project_id', '')
         uploaded_files = request.FILES.getlist('files')

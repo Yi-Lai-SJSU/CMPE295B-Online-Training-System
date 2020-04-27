@@ -47,7 +47,9 @@ class ProjectsAllView(APIView):
             os.makedirs(image_default_path)
             model_path = project_path + "models/"
             os.makedirs(model_path)
-            project.location = str(user_id) + "/" + str(project.id) + "/",
+            print(str(user_id) + "/" + str(project.id) + "/")
+            project.location = str(user_id) + "/" + str(project.id) + "/"
             project.save()
+            print(project.location)
             serializer = ProjectSerializer(project, many=False)
             return JsonResponse(serializer.data, safe=False)

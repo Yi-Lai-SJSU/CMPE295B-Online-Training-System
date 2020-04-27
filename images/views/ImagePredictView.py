@@ -15,27 +15,25 @@ import tensorflow as tf
 import os
 import datetime
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+
 class ImagePredict(APIView):
     def post(self, request):
-        model_title = request.data['model']
+        print("receiving images....")
+        model_id = request.data['model_id']
         uploaded_files = request.FILES.getlist('files')
         user_id = request.GET.get('user_id', '')
         project_id = request.GET.get('project_id', '')
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-"
-
         # https://stackoverflow.com/questions/13821866/queryset-object-has-no-attribute-name
         # model = Model.objects.filter(title=model_title) return a collection
-        model = Model.objects.get(title=model_title)
+        model = Model.objects.get(id=model_id)
         model_path = settings.MEDIA_ROOT + model.location
-
+        print(model_path)
         # https://github.com/qubvel/efficientnet/issues/62 to fix ValueError: Unknown activation function:swish
         keras_model = tf.keras.models.load_model(model_path)
         index = 0
-
         for unPredictedImage in uploaded_files:
             # Get the predict result:
             label_path = settings.MEDIA_ROOT + model.label_location
@@ -45,9 +43,7 @@ class ImagePredict(APIView):
             fr = open(label_path)
             dic = eval(fr.read())
             print(dic)
-
             label = predictLabel(unPredictedImage, keras_model, label_path, False)
-
             # Save the image to file-system according to the label:
             image_path = settings.MEDIA_ROOT + project.location + "images/" + label + "/"
             if not os.path.exists(image_path):
@@ -91,9 +87,7 @@ def predictLabel(unpredictedImage, model, label, imageFormatIsNP):
     fr = open(label)
     dic = eval(fr.read())
     fr.close()
-
     for key in dic:
         if dic[key] == classIndex:
             return key
-
     return "unknown"

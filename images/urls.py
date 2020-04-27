@@ -9,8 +9,8 @@ from images.views.ImagesByVideoView import ImagesByVideoView
 urlpatterns = [
     path('all', ImagesAllView.as_view(), name="imageList"),
     path('type', ImageTypeView.as_view(), name='imageType'),
+    path('predict', ImagePredict.as_view(), name="imagePredict"),
     path('byVideo/<int:video_id>', ImagesByVideoView.as_view(), name='imageByVideo'),
     path('<int:image_id>', ImageView.as_view(), name="image"),
     path('<str:image_tag>', ImagesByTagsView.as_view(), name="imageByTags"),
-    path('predict/', ImagePredict.as_view(), name="imagePredict"),
 ]

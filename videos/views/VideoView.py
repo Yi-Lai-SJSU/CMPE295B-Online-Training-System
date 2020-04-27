@@ -17,6 +17,7 @@ import tensorflow as tf
 import os
 import datetime
 from ..objectDetection import objectDetectionLImages
+import json
 
 # Create your views here.
 class VideoView(APIView):
@@ -24,7 +25,17 @@ class VideoView(APIView):
     def get(self, request, video_id):
         video = Video.objects.get(id=video_id)
         videoSerializer = VideoSerializer(video, many=False)
-        return JsonResponse(videoSerializer.data, safe=False)
+        response = dict()
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        images = MyImage.objects.filter(video=video)
+        # images = MyImage.objects.filter(user=user, project=project)
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        response['images'] = ImageSerializer(images, many=True).data
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        response['video'] = VideoSerializer(video, many=False).data
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(response)
+        return HttpResponse(json.dumps(response))
 
     def delete(self, request, video_id):
         video = Video.objects.get(id=video_id)
@@ -35,7 +46,6 @@ class VideoView(APIView):
             os.remove(video_path)
         else:
             print("The file does not exist")
-
         image_type_list = []
         with transaction.atomic():
             for image in images:

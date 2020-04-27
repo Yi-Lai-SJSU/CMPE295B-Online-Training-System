@@ -75,9 +75,8 @@ class VideosAllView(APIView):
         locationOfVideos = settings.MEDIA_ROOT + project.location + "videos/"
         fs = FileSystemStorage(location=locationOfVideos)
         fs.save(timestamp + uploaded_file.name, uploaded_file)
-
         videoFile = locationOfVideos + timestamp + uploaded_file.name
-        video = Video(title=uploaded_file.name,
+        video = Video(title=timestamp + uploaded_file.name,
                       description="default",
                       location=project.location + "videos/" + timestamp + uploaded_file.name,
                       url=settings.MEDIA_URL_DATADASE + project.location + "videos/" + timestamp + uploaded_file.name,
@@ -107,6 +106,7 @@ class VideosAllView(APIView):
                 predicted_label = predictLabel(frame, keras_model, label_path, True)
                 print(predicted_label)
                 print("LOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOG")
+
                 # Get the folder path to save the Frame, if not exited, create a new folder
                 image_folder = settings.MEDIA_ROOT + project.location + "images/" + predicted_label + "/"
                 if not os.path.exists(image_folder):

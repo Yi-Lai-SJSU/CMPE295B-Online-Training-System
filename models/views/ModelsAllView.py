@@ -97,9 +97,8 @@ class ModelsAllView(APIView):
         project = Project.objects.get(id=project_id)
         # save to database:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-"
-        fileName = request.data['title']
         # fileName = str(user.id) + "+" + project.title + "+" + request.data['title']
-        # fileName = str(user.id) + "+" + project.title + "+" + timestamp + request.data['title']
+        fileName = str(user.id) + "+" + project.title + "+" + timestamp + request.data['title']
         print(fileName)
 
         model = Model(title=fileName + ".h5",

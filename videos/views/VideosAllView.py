@@ -15,6 +15,8 @@ import tensorflow as tf
 import os
 import datetime
 from ..objectDetection import objectDetectionLImages
+import json
+from django.core import serializers
 
 # Create your views here.
 class VideosAllView(APIView):
@@ -44,9 +46,27 @@ class VideosAllView(APIView):
             self.classifyImages(user, project, model, timeF, uploaded_file, timestamp)
         else:
             self.detectObjectImages(user, project, model, timeF, uploaded_file, timestamp)
-        predictedImage = MyImage.objects.filter(title__startswith=timestamp)
-        serializer = ImageSerializer(predictedImage, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        # response = dict()
+        # response['images'] = MyImage.objects.filter(title__startswith=timestamp)
+        # response['video'] = Video.objects.filter(title__startswith=timestamp)
+        # print(json.dumps(response))
+        response = dict()
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        images = MyImage.objects.filter(title__startswith=timestamp, user=user, project=project)
+        # images = MyImage.objects.filter(user=user, project=project)
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        response['images'] = ImageSerializer(images, many=True).data
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        video = Video.objects.filter(title__startswith=timestamp, user=user, project=project)[0]
+        response['video'] = VideoSerializer(video, many=False).data
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(response)
+        # # for image in predictedImage:
+        # #     response['images'].append(image.url)
+        # # response['video'] = Video.objects.filter(title__startswith=timestamp)
+        # # print(response['images'])
+        # # print(response['video'])
+        return HttpResponse(json.dumps(response))
 
     def detectObjectImages(self, user, project, model, timeF, uploaded_file, timestamp):
         objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp)

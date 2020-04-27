@@ -33,6 +33,7 @@ class CustomAuthToken(ObtainAuthToken):
         if not isExists:
             os.makedirs(user_path)
             print("succuss")
+            return Response(statu=401)
         return Response({
             'token': token.key,
             'user_id': user.pk,

@@ -64,6 +64,9 @@ class ModelsAllView(APIView):
         user_id = request.GET.get('user_id', '')
         project_id = request.GET.get('project_id', '')
         type = request.data['type']
+        description=request.data['description']
+        title=request.data['title']
+
         print(type)
         uploaded_files = request.FILES.getlist('files')
         locationOfModel = "/code/celery_tasks/"
@@ -80,7 +83,7 @@ class ModelsAllView(APIView):
         # project = Project.objects.get(user=user, title=project_title)
         print("************************************************")
         print(project_id)
-        train_mode.delay((user_id, project_id, type), )
+        train_mode.delay((user_id, project_id, type, title, description), )
         print("************************************************")
         return HttpResponse(content="Upload Models", status=200)
 

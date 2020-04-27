@@ -28,7 +28,6 @@ class ImagesAllView(APIView):
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
         images = MyImage.objects.filter(user=user, project=project)
-
         image_type_list = []
         with transaction.atomic():
             for image in images:

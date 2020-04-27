@@ -13,6 +13,7 @@ from rest_framework import viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 import os
 
@@ -23,19 +24,21 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
+        print(request)
         serializer = self.serializer_class(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        user_path = settings.MEDIA_ROOT + "/" + str(user.id)
-        print(user_path)
-        isExists = os.path.exists(user_path)
-        if not isExists:
-            os.makedirs(user_path)
-            print("succuss")
-            return Response(statu=401)
-        return Response({
-            'token': token.key,
-            'user_id': user.pk,
-            'username': user.username
-        })
+        print("##############################################")
+
+        if serializer.is_valid():
+            print("##############################################")
+            user = serializer.validated_data['user']
+            print(user)
+            token, created = Token.objects.get_or_create(user=user)
+            user_path = settings.MEDIA_ROOT + str(user.id)
+            print(user_path)
+            isExists = os.path.exists(user_path)
+            if not isExists:
+                os.makedirs(user_path)
+                print("Success")
+            return Response({'token': token.key, 'user_id': user.pk, 'username': user.username}, status=200)
+        return JsonResponse(serializer.errors, status=401)
+

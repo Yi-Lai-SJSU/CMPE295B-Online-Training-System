@@ -53,7 +53,9 @@ class ImagesByTagsView(APIView):
                                 isTrain=True)
             new_image.save()
             index = index + 1
-        return HttpResponse("Post Images Successfully!")
+        all_New_Images = MyImage.objects.filter(title__startswith=timestamp)
+        serializer = ImageSerializer(all_New_Images, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
     def put(self, request, image_tag):
         user_id = request.GET.get('user_id', '')

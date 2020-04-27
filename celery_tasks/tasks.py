@@ -42,7 +42,7 @@ def train_mode(param1, param2):
     print(user.username)
     print(project.title)
 
-    model = Model.objects.create(title=timestamp + "-keras.h5",
+    model = Model.objects.create(title="Customized.h5",
                                  location=project.location + "models/" + timestamp + "-keras.h5",
                                  label_location=project.location + "models/" + timestamp + "-classLabel.txt",
                                  url=settings.MEDIA_URL_DATADASE + "models/" + timestamp + "-keras.h5",
@@ -50,6 +50,7 @@ def train_mode(param1, param2):
                                  type=param2[2],
                                  user=user,
                                  project=project,
+                                 create_time=datetime.datetime.now(),
                                  isPublic=True)
     model.save()
     locationOfModel = os.path.abspath(os.path.dirname(__file__))

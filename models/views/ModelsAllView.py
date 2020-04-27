@@ -94,7 +94,8 @@ class ModelsAllView(APIView):
         project = Project.objects.get(id=project_id)
         # save to database:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S") + "-"
-        fileName = str(user.id) + "+" + project.title + "+" + timestamp + request.data['title']
+        fileName = str(user.id) + "+" + project.title + "+" + request.data['title']
+        # fileName = str(user.id) + "+" + project.title + "+" + timestamp + request.data['title']
         print(fileName)
 
         model = Model(title=fileName + ".h5",
@@ -105,6 +106,7 @@ class ModelsAllView(APIView):
                       label_location=project.location + "models/" + fileName + ".txt",
                       url=settings.MEDIA_URL_DATADASE + project.location + "models/" + fileName + ".h5",
                       user=user,
+                      create_time=datetime.datetime.now(),
                       project=project)
         model.save()
         # save to file system

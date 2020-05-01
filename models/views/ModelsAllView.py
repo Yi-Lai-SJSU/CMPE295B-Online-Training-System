@@ -35,6 +35,7 @@ import datetime
 import time
 import cv2
 import os
+from rest_framework import filters
 
 # Create your views here.
 class ModelsAllView(APIView):
@@ -48,6 +49,8 @@ class ModelsAllView(APIView):
             ((Q(user=user) & Q(project=project)) | Q(isPublic=True)) & Q(type=project.type)
         )
         serializer = ModelSerializer(models, many=True)
+        # filter_backends = [filters.OrderingFilter]
+        # ordering = ['status']
         return JsonResponse(serializer.data, safe=False)
 
     def post(self, request):

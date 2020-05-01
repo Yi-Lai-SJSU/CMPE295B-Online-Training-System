@@ -14,3 +14,6 @@ class Model(models.Model):
     create_time = models.DateTimeField(auto_now=False, null=True)
     status = models.CharField(max_length=32, null=True)
     isPublic = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['status']

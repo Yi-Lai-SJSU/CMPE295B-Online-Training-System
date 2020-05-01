@@ -9,6 +9,7 @@ from images.models import Image as MyImage
 import os
 import datetime
 from django.db import transaction
+import json
 
 # Create your views here.
 class ImagesAllView(APIView):
@@ -27,6 +28,7 @@ class ImagesAllView(APIView):
         project_id = request.GET.get('project_id', '')
         user = User.objects.get(id=user_id)
         project = Project.objects.get(id=project_id)
+
         images = MyImage.objects.filter(user=user, project=project)
         image_type_list = []
         with transaction.atomic():
@@ -38,4 +40,7 @@ class ImagesAllView(APIView):
 
         for image_type in image_type_list:
             os.rmdir(settings.MEDIA_ROOT + project.location + "images/" + image_type + "/")
-        return HttpResponse(content="Delete Successfully", status="200")
+
+        response = dict()
+        response['message'] = "success"
+        return HttpResponse(json.dumps(response))

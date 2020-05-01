@@ -4,6 +4,8 @@ from images.serializers import ImageSerializer
 from django.http import HttpResponse, JsonResponse
 from images.models import Image as MyImage
 import os
+import json
+
 
 # API: images/<int:image_id>
 # Usage: get:    get image by id
@@ -27,8 +29,8 @@ class ImageView(APIView):
         # Move in the file system
         new_image_folder = settings.MEDIA_ROOT + image.project.location + "images/" + new_image_type + "/"
         old_image_folder = settings.MEDIA_ROOT + image.project.location + "images/" + image.type + "/"
-        new_image_path   = settings.MEDIA_ROOT + image.project.location + "images/" + new_image_type + "/" + image.title
-        old_image_path   = settings.MEDIA_ROOT + image.project.location + "images/" + image.type + "/" + image.title
+        new_image_path = settings.MEDIA_ROOT + image.project.location + "images/" + new_image_type + "/" + image.title
+        old_image_path = settings.MEDIA_ROOT + image.project.location + "images/" + image.type + "/" + image.title
         print("new_image_path: " + new_image_path)
         print("old_image_path: " + old_image_path)
 
@@ -49,18 +51,28 @@ class ImageView(APIView):
         return JsonResponse(serializer.data, safe=False)
 
     def delete(self, request, image_id):
-        image = MyImage.objects.get(id=image_id)
-        image_folder = settings.MEDIA_ROOT + image.project.location + "images/" + image.type + "/"
-        image_path = settings.MEDIA_ROOT + image.location
-        print(image_path)
-        if os.path.exists(image_path):
-            os.remove(image_path)
-        else:
-            print("The file does not exist")
+        print("Delete image......")
+        try:
+            image = MyImage.objects.get(id=image_id)
+            image_folder = settings.MEDIA_ROOT + image.project.location + "images/" + image.type + "/"
+            image_path = settings.MEDIA_ROOT + image.location
+            print(image_path)
+            if os.path.exists(image_path):
+                os.remove(image_path)
+            else:
+                print("The file does not exist")
 
-        if not os.listdir(image_folder):
-            print("Empty dir")
-            os.rmdir(image_folder)
+            if not os.listdir(image_folder):
+                print("Empty dir")
+                os.rmdir(image_folder)
 
-        image.delete()
-        return HttpResponse(content="Delete Successfully", status="200")
+            print("Delete Image....")
+            print("Delete Image test......")
+            image.delete()
+            response = dict()
+            response['message'] = "success"
+            return HttpResponse(json.dumps(response))
+        except MyImage.DoesNotExist:
+            response = dict()
+            response['message'] = "error"
+            return HttpResponse(json.dumps(response))

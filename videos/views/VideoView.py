@@ -56,4 +56,6 @@ class VideoView(APIView):
         for image_type in image_type_list:
             os.rmdir(settings.MEDIA_ROOT + video.project.location + "images/" + image_type + "/")
         video.delete()
-        return HttpResponse(content="Delete Successfully", status="200")
+        response = dict()
+        response['message'] = "success"
+        return HttpResponse(json.dumps(response))

@@ -15,7 +15,6 @@ import tensorflow as tf
 import os
 import datetime
 
-
 class ImagePredict(APIView):
     def post(self, request):
         print("receiving images....")
@@ -90,4 +89,4 @@ def predictLabel(unpredictedImage, model, label, imageFormatIsNP):
     for key in dic:
         if dic[key] == classIndex:
             return key
-    return "unknown"
+    return "null"

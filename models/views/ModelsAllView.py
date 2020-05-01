@@ -85,7 +85,9 @@ class ModelsAllView(APIView):
         print(project_id)
         train_mode.delay((user_id, project_id, type, title, description), )
         print("************************************************")
-        return HttpResponse(content="Upload Models", status=200)
+        response = dict()
+        response['message'] = "success"
+        return HttpResponse(json.dumps(response))
 
     def uploadModel(self, request):
         print("POST received - return done")
@@ -118,4 +120,5 @@ class ModelsAllView(APIView):
         fs.save(fileName + ".h5", uploaded_files[0])
         fs.save(fileName + ".txt", uploaded_files[1])
         print("**********************")
-        return HttpResponse(content="Upload Models", status=200)
+        serializer = ModelSerializer(model, many=False)
+        return JsonResponse(serializer.data)

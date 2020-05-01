@@ -9,6 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from images.models import Image as MyImage
 import os
 import datetime
+import json
 
 # API: images/<string:image_tag>
 # Usage: get:    get image by tag
@@ -110,4 +111,6 @@ class ImagesByTagsView(APIView):
                 os.remove(settings.MEDIA_ROOT + project.location + "images/" + image_tag + "/" + image.title)
                 image.delete()
         os.rmdir(settings.MEDIA_ROOT + project.location + "images/" + image_tag + "/")
-        return HttpResponse(content="Delete Successfully", status="200")
+        response = dict()
+        response['message'] = "success"
+        return HttpResponse(json.dumps(response))

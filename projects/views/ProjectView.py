@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 import datetime
 import shutil
+import json
 
 # Create your views here.
 class ProjectView(APIView):
@@ -29,4 +30,6 @@ class ProjectView(APIView):
         print(settings.MEDIA_ROOT + project.location)
         shutil.rmtree(settings.MEDIA_ROOT + project.location)
         project.delete()
-        return HttpResponse(content="Delete Successfully", status="200")
+        response = dict()
+        response['message'] = "success"
+        return HttpResponse(json.dumps(response))

@@ -10,3 +10,4 @@ class Video(models.Model):
     type = models.CharField(max_length=32)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    create_time = models.DateTimeField(auto_now=False, null=True)

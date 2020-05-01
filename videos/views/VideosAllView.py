@@ -82,6 +82,7 @@ class VideosAllView(APIView):
                       url=settings.MEDIA_URL_DATADASE + project.location + "videos/" + timestamp + uploaded_file.name,
                       type="unknown",
                       user=user,
+                      create_time=datetime.datetime.now(),
                       project=project)
         video.save()
 

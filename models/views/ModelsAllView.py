@@ -63,6 +63,9 @@ class ModelsAllView(APIView):
         print("receive training model....")
         user_id = request.GET.get('user_id', '')
         project_id = request.GET.get('project_id', '')
+        user = User.objects.get(id=user_id)
+        project = Project.objects.get(id=project_id)
+
         type = request.data['type']
         description=request.data['description']
         title=request.data['title']
@@ -83,11 +86,22 @@ class ModelsAllView(APIView):
         # project = Project.objects.get(user=user, title=project_title)
         print("************************************************")
         print(project_id)
-        train_mode.delay((user_id, project_id, type, title, description), )
-        print("************************************************")
-        response = dict()
-        response['message'] = "success"
-        return HttpResponse(json.dumps(response))
+        model = Model(title=title + ".h5",
+                      description=description,
+                      type=type,
+                      isPublic=True,
+                      location=project.location + "models/" + title + ".h5",
+                      label_location=project.location + "models/" + title + ".txt",
+                      url=settings.MEDIA_URL_DATADASE + project.location + "models/" + title + ".h5",
+                      user=user,
+                      status="Pending",
+                      create_time=datetime.datetime.now(),
+                      project=project)
+        model.save()
+        print("Generate a new model with Pending status")
+        train_mode.delay((model.id), )
+        serializer = ModelSerializer(model, many=False)
+        return JsonResponse(serializer.data, safe=False)
 
     def uploadModel(self, request):
         print("POST received - return done")
@@ -111,6 +125,7 @@ class ModelsAllView(APIView):
                       label_location=project.location + "models/" + fileName + ".txt",
                       url=settings.MEDIA_URL_DATADASE + project.location + "models/" + fileName + ".h5",
                       user=user,
+                      status="Trained",
                       create_time=datetime.datetime.now(),
                       project=project)
         model.save()

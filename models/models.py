@@ -12,4 +12,5 @@ class Model(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now=False, null=True)
+    status = models.CharField(max_length=32, null=True)
     isPublic = models.BooleanField(default=True)

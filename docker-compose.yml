@@ -5,8 +5,8 @@ services:
     image: "redis:alpine"
   web:
     build: .
-    command: bash -c "python /code/manage.py migrate --noinput && python /code/manage.py runserver 0.0.0.0:8000"
-    # command: bash -c "python /code/manage.py migrate --noinput && python /code/manage.py runserver --noreload 0.0.0.0:8000"
+    # command: bash -c "python /code/manage.py migrate --noinput && python /code/manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python /code/manage.py migrate --noinput && python /code/manage.py runserver --noreload 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:

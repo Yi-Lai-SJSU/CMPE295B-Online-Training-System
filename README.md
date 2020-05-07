@@ -4,8 +4,10 @@ This repo belonging to the master project of Online Machine Learning System comp
 This repo contains only the backend side the Online Machine Learning system. The frontend side is designed and implemented Shikang Jin. The source code of the frontend side is availabel on the github https://github.com/ShikangNero/Edge-Computing/tree/master/frontend. 
 
 ### Backend Design
-<img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/overall-architecure.png"/>
-![image]()
+<div align=center><img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/overall-architecure.png"/>
+<div align=center><img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Module%20Design.png"/>
+
+
 
 
 

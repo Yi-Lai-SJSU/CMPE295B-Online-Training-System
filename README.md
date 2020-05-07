@@ -16,7 +16,7 @@ docker-compose up --build --force-recreate
 ```
 
 ### Machine Learning Training
-<img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Training.png"/><div>
+<img width="500" height="280" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Training.png"/><div>
   
 ### Machine Learning Inference
 <img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Object-Detection.png"/><div>

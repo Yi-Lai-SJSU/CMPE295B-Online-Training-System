@@ -6,8 +6,7 @@ This repo contains only the backend side the Online Machine Learning system. The
 
 ### Backend Design
 <img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/overall-architecure.png"/><div>
-<img width="480" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Module%20Design.png"/><div>
-
+  
 ### How to start the code
 Run the backend need to install and start docker 
 ```
@@ -17,3 +16,7 @@ docker-compose up --build --force-recreate
 ```
 
 ### Machine Learning Training
+<img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Training.png"/><div>
+  
+### Machine Learning Inference
+<img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Object-Detection.png"/><div>

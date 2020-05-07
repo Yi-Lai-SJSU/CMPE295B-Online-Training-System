@@ -1,3 +1,16 @@
+# CMPE295 - Online Machine Learning System Backend
+### Introduction
+This repo belonging to the master project of Online Machine Learning System completed by Yi Lai to provide online Machine Learning training and inference Services.
+This repo contains only the backend side the Online Machine Learning system. The frontend side is designed and implemented Shikang Jin. The source code of the frontend side is availabel on the github https://github.com/ShikangNero/Edge-Computing/tree/master/frontend. 
+
+### Backend Design
+
+
+
+
+
+
+
 1. Project module:
 (1) API  - GET   http://localhost:8000/projects/all?user_id=25
      Description - Get all the projects under user(25)

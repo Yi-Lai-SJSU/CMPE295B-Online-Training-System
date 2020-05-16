@@ -74,7 +74,9 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
         print('Open Error!')
         rval = False
 
+    count = 0
     while rval:
+        count = count + 1
         rval, frame = vc.read()
         if c % timeF == 0:
             image = frame
@@ -84,19 +86,32 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
             image, scale = resize_image(image)
             start = time.time()
             boxes, scores, labels = model.predict_on_batch(np.expand_dims(image, axis=0))
+            print("labels:", labels)
             print("processing time: resize_image", time.time() - start)
             boxes /= scale
 
+            captions_boxes = dict()
             # visualize detections
+            captions_boxes["caption"] = []
+            captions_boxes["box"] = []
+            captions_text = ""
+            boxes_text = ""
             for box, score, label in zip(boxes[0], scores[0], labels[0]):
                 # scores are sorted so we can break
                 if score < 0.5:
                     break
                 color = label_color(label)
                 b = box.astype(int)
-                draw_box(draw, b, color=color)
+                print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+                print(b)
+                print("color:", b)
+                # draw_box(draw, b, color=color)
                 caption = "{} {:.3f}".format(labels_to_names[label], score)
-                draw_caption(draw, b, caption)
+                print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+                print("caption:", caption)
+                # draw_caption(draw, b, caption)
+                captions_text = captions_text + "," + caption
+                boxes_text = boxes_text + "," + str(b)
 
             # Get the folder path to save the Frame, if not exited, create a new folder
             image_folder = settings.MEDIA_ROOT + project.location + "images/" + "detected" + "/"
@@ -115,10 +130,11 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                                 description="default",
                                 type="detected",
                                 user=user,
+                                captions=captions_text,
+                                boxes=boxes_text,
                                 project=project,
                                 isTrain=True)
             new_image.save()
         c += 1
         cv2.waitKey(1)
     vc.release()
-

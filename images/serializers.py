@@ -4,4 +4,6 @@ from .models import Image
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ('id', 'title', 'location','description', 'url', 'type', 'user', 'project', 'isTrain')
+        fields = ('id', 'title', 'location','description',
+                  'url', 'type', 'user', 'project', 'isTrain',
+                  'captions', 'boxes')

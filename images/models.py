@@ -13,4 +13,6 @@ class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True)
+    captions = models.TextField(max_length=360, null=True)
+    boxes = models.TextField(max_length=360, null=True)
     isTrain = models.BooleanField(default=True)

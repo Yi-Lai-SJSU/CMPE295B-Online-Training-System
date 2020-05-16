@@ -10,6 +10,7 @@ from images.models import Image as MyImage
 from videos.models import Video
 import os
 import datetime
+import json
 
 # API: images/<string:image_tag>
 # Usage: get:    get image by tag
@@ -23,4 +24,13 @@ class ImagesByVideoView(APIView):
         video = Video.objects.get(id=video_id)
         images = MyImage.objects.filter(video=video)
         serializer = ImageSerializer(images, many=True)
-        return JsonResponse(serializer.data, safe=False)
+
+        response = dict()
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^")
+        if video.project.type == "Classification":
+            response['type'] = "Classification"
+        else:
+            response['type'] = "Detection"
+
+        response['date'] = serializer.data
+        return HttpResponse(json.dumps(response))

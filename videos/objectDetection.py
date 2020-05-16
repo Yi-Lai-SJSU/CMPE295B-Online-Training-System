@@ -133,6 +133,7 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                                 captions=captions_text,
                                 boxes=boxes_text,
                                 project=project,
+                                video=video,
                                 isTrain=True)
             new_image.save()
         c += 1

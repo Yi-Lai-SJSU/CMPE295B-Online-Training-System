@@ -1,8 +1,7 @@
 # CMPE295 - Online Machine Learning System Backend
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Python](https://img.shields.io/pypi/pyversions/tensorflow.svg?style=plastic)](https://badge.fury.io/py/tensorflow)
-
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 ### Introduction
 This repo belonging to the master project of Online Machine Learning System completed by Yi Lai to provide online Machine Learning training and inference Services.
@@ -37,9 +36,13 @@ The backend of the Online Machine Learning System is mainly to provide online Ma
 4. [Tensorflow](https://www.tensorflow.org/) + Keras API, CNN and Transfer Learning
 
     TensorFlow is an end-to-end open-source platform for machine learning. Keras is a high-level neural network API based on the Tensorflow framework. In our project, we use Tensorflow and Keras API to build CNN networks and then train out an image classification model. We also use the transfer learning technology based on the resnet101 net to train out an object detection model. 
+    
+    For the object Detection, we call the API from [Keras implementation of RetinaNet object detection](https://github.com/fizyr/keras-retinanet).
+    
 5. Dockerization of the Backend side of the web application
-A common problem in the development process is the issue of environmental consistency. The Docker image provides a complete runtime environment in addition to the kernel, which ensures the consistency of the application runtime environment. Dockerization also enables more efficient and convenient ways to own local development environments that closely match the production environment. To facilitate the operation and maintenance of our project, we dockerize the backend of our web application.
-  
+
+    A common problem in the development process is the issue of environmental consistency. The Docker image provides a complete runtime environment in addition to the kernel, which ensures the consistency of the application runtime environment. Dockerization also enables more efficient and convenient ways to own local development environments that closely match the production environment. To facilitate the operation and maintenance of our project, we dockerize the backend of our web application.
+
 ### How to start the code
 #### Prerequisite: Run the backend need to install and start docker 
 ```
@@ -47,9 +50,5 @@ git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
 cd MachineLearningStudio
 docker-compose up --build --force-recreate
 ```
+### FAQ
 
-### Machine Learning Training
-<img width="500" height="250" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Training.png"/><div>
-  
-### Machine Learning Inference
-<img width="500" height="300" src="https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Object-Detection.png"/><div>

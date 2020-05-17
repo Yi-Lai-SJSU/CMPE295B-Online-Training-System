@@ -43,7 +43,7 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                   description="default",
                   location=project.location + "videos/" + timestamp + uploaded_file.name,
                   url=settings.MEDIA_URL_DATADASE + project.location + "videos/" + timestamp + uploaded_file.name,
-                  type="unknown",
+                  type="Detection",
                   user=user,
                   project=project)
     video.save()

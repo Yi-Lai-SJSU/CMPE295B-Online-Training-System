@@ -80,7 +80,7 @@ class VideosAllView(APIView):
                       description="default",
                       location=project.location + "videos/" + timestamp + uploaded_file.name,
                       url=settings.MEDIA_URL_DATADASE + project.location + "videos/" + timestamp + uploaded_file.name,
-                      type="unknown",
+                      type="Classification",
                       user=user,
                       create_time=datetime.datetime.now(),
                       project=project)

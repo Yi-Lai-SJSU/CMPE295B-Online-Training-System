@@ -22,8 +22,9 @@ The backend of the Online Machine Learning System is mainly to provide online Ma
 
     We choose Django REST Framework to build the backend of our web application. The main reason we choose Django Framework in Python is still the most popular programming language for machine learning and deep learning projects. Django REST framework is a powerful and flexible toolkit for building Web APIs, and it is also a framework that Django relies on to extend Restful API, similar to Django's usage style.
 
-2. Celery + Redis to implement an asynchronous Task
-It needs a large amount of training time to generate a good machine learning model. This kind of web request should be done outside of the immediate request-response cycle. So we import Celery as asynchronous workers and Redis as the message broker for all the model training tasks. All the requests of training a model will be handled by the Celery Server without blocking the main workflow.
+2. [Celery + Redis](https://docs.celeryproject.org/en/stable/getting-started/brokers/redis.html) to implement an asynchronous Task
+    It needs a large amount of training time to generate a good machine learning model. This kind of web request should be done outside of the immediate request-response cycle. So we import Celery as asynchronous workers and Redis as the message broker for all the model training tasks. All the requests of training a model will be handled by the Celery Server without blocking the main workflow.
+
 3. fastDFS as Large File Storage
 FastDFS is an open-source, lightweight, distributed file system that is dedicated to large data storage and load balancing. This large file storage system is one of the best choices for online services involving video, images, or other files. In our program, all the images, videos, and models are uploaded onto the fastDFS storage and then the edge side can load these files when they need them.
 4. Tensorflow + Keras API, CNN and Transfer Learning

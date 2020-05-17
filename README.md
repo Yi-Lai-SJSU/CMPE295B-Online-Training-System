@@ -1,7 +1,7 @@
 # CMPE295 - Online Machine Learning System Backend
 
 [![Python](https://img.shields.io/pypi/pyversions/tensorflow.svg?style=plastic)](https://badge.fury.io/py/tensorflow)
-
+[![Django]
 
 ### Introduction
 This repo belonging to the master project of Online Machine Learning System completed by Yi Lai to provide online Machine Learning training and inference Services.

@@ -5,9 +5,8 @@
 
 ## Table of Contents
 - [Introduction](#Introduction)
-- [Install](#How to start the code)
-- [Demo](#Demo Video)
-
+- [How to start the code](#How to start the code)
+- [Demo Video](#Demo Video)
 - [System Architecture](#System Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)

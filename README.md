@@ -7,8 +7,8 @@
 - [Introduction](#Introduction)
 - [Install](#Install)
 - [Demo](#Demo)
-    - [ImageClassificaiton](#1. Image Classification Demo recorded by Shikang Jin)
-    - [ObjectDetection](#2. Object Detection Demo recorded by Yi Lai)
+    - [ImageClassificaiton](#Image Classification Demo recorded by Shikang Jin)
+    - [ObjectDetection](#Object Detection Demo recorded by Yi Lai)
 - [Architecture](#System-Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)
@@ -28,10 +28,10 @@ $ docker-compose up --build --force-recreate
 ```
 
 #### Demo
-##### 1. Image Classification Demo recorded by Shikang Jin
+##### Image Classification Demo recorded by Shikang Jin
 [![Watch the video](https://img.youtube.com/vi/xX838IBlG2k/hqdefault.jpg)](https://youtu.be/xX838IBlG2k)
 
-##### 2. Object Detection Demo recorded by Yi Lai
+##### Object Detection Demo recorded by Yi Lai
 [![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/hqdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 
 

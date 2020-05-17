@@ -9,8 +9,10 @@ This Online Machine Learning System that can provide customers with services of 
 #### Demo Video
 ##### Online Image Classification Training
 #### Online Image classification 
-#### Online Object Detection
-[![Watch the video](https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Screen%20Shot%202020-05-16%20at%2022.54.10.png](https://www.youtube.com/watch?v=8ZqswtNSvWg)
+#### Online Object Detection (click to watch the demo)
+[![Watch the video](https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Screen%20Shot%202020-05-16%20at%2022.54.10.png)](https://www.youtube.com/watch?v=8ZqswtNSvWg)
+
+[![asciicast](https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System/blob/master/media/Screen%20Shot%202020-05-16%20at%2022.54.10.png)](https://www.youtube.com/watch?v=8ZqswtNSvWg)
 
 
 

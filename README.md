@@ -9,6 +9,14 @@ This repo contains only the backend side the Online Machine Learning system. The
 
 This Online Machine Learning System that can provide customers with services of building, improving, testing, and evaluating their image classification model and object detection models. The image classification model is trained to generate the labels of a given image and the object detection model is to identify the main object in an image and return the coordinates of the object detected.  The images used for training can be retrieved from the large file storage, like fastDFS bucket/Amazon S3, or be uploaded by the customers through the Frontend.
 
+### How to start the code
+#### Prerequisite: Run the backend need to install and start docker 
+```
+git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
+cd MachineLearningStudio
+docker-compose up --build --force-recreate
+```
+
 #### Demo Video
 ##### 1. Online Image Classification Training
 ##### 2. Online Image classification 
@@ -43,12 +51,5 @@ The backend of the Online Machine Learning System is mainly to provide online Ma
 
     A common problem in the development process is the issue of environmental consistency. The Docker image provides a complete runtime environment in addition to the kernel, which ensures the consistency of the application runtime environment. Dockerization also enables more efficient and convenient ways to own local development environments that closely match the production environment. To facilitate the operation and maintenance of our project, we dockerize the backend of our web application.
 
-### How to start the code
-#### Prerequisite: Run the backend need to install and start docker 
-```
-git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
-cd MachineLearningStudio
-docker-compose up --build --force-recreate
-```
 ### FAQ
 

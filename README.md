@@ -12,7 +12,8 @@ This Online Machine Learning System that can provide customers with services of 
 
 The backend of the Online Machine Learning System is mainly to provide online Machine Learning Training and Inference services. The Online Machine Learning Training which takes a long time is asynchronous tasks implemented by the Celery Server. Besides these two main tasks, the backend side also implements User account management, project management, and dataset management. There are two types of databases involved in the system.  The SQLite database in the local is responsible for saving all the metadata of images, videos, and models. The local file system serves as the cache storage of images and models during Machine Learning training and inference. All the historical images, videos, and models are stored in the Large File system (fastDFS) for downloading when necessary.  The technology we used in the implementation of the Online Machine Learning System is explained in detail below.
 
-1.  [Django REST Framework](https://www.django-rest-framework.org/) + Python
+1.  [Django REST Framework](https://www.django-rest-framework.org/) + [Python](https://www.python.org/downloads/release/python-360/)
+
     We choose Django REST Framework to build the backend of our web application. The main reason we choose Django Framework in Python is still the most popular programming language for machine learning and deep learning projects. Django REST framework is a powerful and flexible toolkit for building Web APIs, and it is also a framework that Django relies on to extend Restful API, similar to Django's usage style.
 
 2. Celery + Redis to implement an asynchronous Task

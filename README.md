@@ -23,7 +23,7 @@ TensorFlow is an end-to-end open-source platform for machine learning. Keras is 
 A common problem in the development process is the issue of environmental consistency. The Docker image provides a complete runtime environment in addition to the kernel, which ensures the consistency of the application runtime environment. Dockerization also enables more efficient and convenient ways to own local development environments that closely match the production environment. To facilitate the operation and maintenance of our project, we dockerize the backend of our web application.
   
 ### How to start the code
-Run the backend need to install and start docker 
+#### Prerequisite: Run the backend need to install and start docker 
 ```
 git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
 cd MachineLearningStudio

@@ -10,9 +10,9 @@ This repo contains only the backend side the Online Machine Learning system. The
 This Online Machine Learning System that can provide customers with services of building, improving, testing, and evaluating their image classification model and object detection models. The image classification model is trained to generate the labels of a given image and the object detection model is to identify the main object in an image and return the coordinates of the object detected.  The images used for training can be retrieved from the large file storage, like fastDFS bucket/Amazon S3, or be uploaded by the customers through the Frontend.
 
 #### Demo Video
-##### Online Image Classification Training
-#### Online Image classification 
-#### Online Object Detection (click to watch the demo)
+##### 1. Online Image Classification Training
+##### 2. Online Image classification 
+##### 3. Online Object Detection
 [![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/hqdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 
 
@@ -37,7 +37,7 @@ The backend of the Online Machine Learning System is mainly to provide online Ma
 
     TensorFlow is an end-to-end open-source platform for machine learning. Keras is a high-level neural network API based on the Tensorflow framework. In our project, we use Tensorflow and Keras API to build CNN networks and then train out an image classification model. We also use the transfer learning technology based on the resnet101 net to train out an object detection model. 
     
-    For the object Detection, we call the API from [Keras implementation of RetinaNet object detection](https://github.com/fizyr/keras-retinanet).
+    For the object Detection, we call the APIs from [Keras implementation of RetinaNet object detection](https://github.com/fizyr/keras-retinanet).
     
 5. [Dockerization](https://docs.docker.com/compose/django/) of the Backend side of the web application
 

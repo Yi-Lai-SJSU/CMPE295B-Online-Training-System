@@ -7,6 +7,8 @@
 - [Introduction](#Introduction)
 - [Install](#Install)
 - [Demo](#Demo)
+    - [ImageClassificaiton](#Image Classification Demo recorded by Shikang Jin)
+    - [ObjectDetection](#Object Detection Demo recorded by Yi Lai)
 - [Architecture](#System-Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)
@@ -20,9 +22,9 @@ This Online Machine Learning System that can provide customers with services of 
 ### Install
 #### Prerequisite: Run the backend need to install and start docker 
 ```
-git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
-cd MachineLearningStudio
-docker-compose up --build --force-recreate
+$ git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
+$ cd MachineLearningStudio
+$ docker-compose up --build --force-recreate
 ```
 
 #### Demo

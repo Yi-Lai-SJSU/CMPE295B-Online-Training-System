@@ -10,7 +10,6 @@ This Online Machine Learning System that can provide customers with services of 
 ##### Online Image Classification Training
 #### Online Image classification 
 #### Online Object Detection (click to watch the demo)
-[![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/maxresdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 [![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/hqdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 
 

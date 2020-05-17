@@ -18,9 +18,10 @@ docker-compose up --build --force-recreate
 ```
 
 #### Demo Video
-##### 1. Online Image Classification Training
-##### 2. Online Image classification 
-##### 3. Online Object Detection
+##### 1. Image Classification Demo
+[![Watch the video](https://img.youtube.com/vi/xX838IBlG2k/hqdefault.jpg)](https://youtu.be/xX838IBlG2k)
+
+##### 2. Object Detection Demo
 [![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/hqdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 
 

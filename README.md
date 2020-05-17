@@ -8,7 +8,7 @@
 - [Install](#Install)
 - [Demo](#Demo)
     - [Image Classificaiton](#Image-Classification-Demo-recorded-by-Shikang-Jin)
-    - [Object Detection](#Object Detection Demo recorded by Yi Lai)
+    - [Object Detection](#Object-Detection-Demo-recorded-by-Yi-Lai)
 - [Architecture](#System-Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)

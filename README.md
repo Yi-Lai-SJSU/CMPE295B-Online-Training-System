@@ -5,8 +5,8 @@
 
 ## Table of Contents
 - [Introduction](#Introduction)
-- [How to start the code](#How to start the code)
-- [Demo Video](#Demo Video)
+- [Install](#Install)
+- [Demo](#Demo)
 - [System Architecture](#System Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)
@@ -17,7 +17,7 @@ This repo contains only the backend side the Online Machine Learning system. The
 
 This Online Machine Learning System that can provide customers with services of building, improving, testing, and evaluating their image classification model and object detection models. The image classification model is trained to generate the labels of a given image and the object detection model is to identify the main object in an image and return the coordinates of the object detected.  The images used for training can be retrieved from the large file storage, like fastDFS bucket/Amazon S3, or be uploaded by the customers through the Frontend.
 
-### How to start the code
+### Install
 #### Prerequisite: Run the backend need to install and start docker 
 ```
 git clone https://github.com/Yi-Lai-SJSU/CMPE295B-Online-Training-System.git
@@ -25,7 +25,7 @@ cd MachineLearningStudio
 docker-compose up --build --force-recreate
 ```
 
-#### Demo Video
+#### Demo
 ##### 1. Image Classification Demo recorded by Shikang Jin
 [![Watch the video](https://img.youtube.com/vi/xX838IBlG2k/hqdefault.jpg)](https://youtu.be/xX838IBlG2k)
 

@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import time
+import json
 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -96,6 +97,9 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
             captions_boxes["box"] = []
             captions_text = ""
             boxes_text = ""
+
+            count = 1
+            boxes_dict = dict()
             for box, score, label in zip(boxes[0], scores[0], labels[0]):
                 # scores are sorted so we can break
                 if score < 0.5:
@@ -110,8 +114,22 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                 print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
                 print("caption:", caption)
                 # draw_caption(draw, b, caption)
-                captions_text = captions_text + "," + caption
-                boxes_text = boxes_text + "," + str(b)
+
+                box_dict = dict()
+                box_dict["caption"] = caption
+                box_rect = dict()
+                box_rect["x1"] = str(b[0])
+                box_rect["y1"] = str(b[1])
+                box_rect["x2"] = str(b[2])
+                box_rect["y2"] = str(b[3])
+                box_dict["box"] = box_rect
+                boxes_dict[str(count)] = box_dict
+                count = count + 1
+
+            print(boxes_dict)
+            boxes_json = json.dumps(boxes_dict)
+            print(boxes_json)
+
 
             # Get the folder path to save the Frame, if not exited, create a new folder
             image_folder = settings.MEDIA_ROOT + project.location + "images/" + "detected" + "/"
@@ -130,8 +148,7 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                                 description="default",
                                 type="detected",
                                 user=user,
-                                captions=captions_text,
-                                boxes=boxes_text,
+                                boxes=json.dumps(boxes_dict),
                                 project=project,
                                 video=video,
                                 isTrain=True)

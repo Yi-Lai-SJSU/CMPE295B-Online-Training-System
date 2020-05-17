@@ -6,4 +6,4 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = ('id', 'title', 'location','description',
                   'url', 'type', 'user', 'project', 'isTrain',
-                  'captions', 'boxes')
+                  'boxes')

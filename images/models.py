@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from projects.models import Project
 from videos.models import Video
+from jsonfield import JSONField
 
 # Create your models here.
 class Image(models.Model):
@@ -13,6 +14,5 @@ class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True)
-    captions = models.TextField(max_length=360, null=True)
-    boxes = models.TextField(max_length=360, null=True)
+    boxes = JSONField(null=True)
     isTrain = models.BooleanField(default=True)

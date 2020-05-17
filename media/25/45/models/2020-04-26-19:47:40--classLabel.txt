@@ -1,1 +1,0 @@
-{'NewWorld': 0, 'chickens': 1, 'student': 2}

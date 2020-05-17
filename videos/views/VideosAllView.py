@@ -102,12 +102,8 @@ class VideosAllView(APIView):
         while rval:
             rval, frame = vc.read()
             if c % timeF == 0:
-                print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
                 # Predict the class of the frame
                 predicted_label = predictLabel(frame, keras_model, label_path, True)
-                print(predicted_label)
-                print("LOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOGLOG")
-
                 # Get the folder path to save the Frame, if not exited, create a new folder
                 image_folder = settings.MEDIA_ROOT + project.location + "images/" + predicted_label + "/"
                 if not os.path.exists(image_folder):

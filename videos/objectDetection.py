@@ -32,9 +32,7 @@ from PIL import Image
 def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp):
     print("inside>>>>>>>>>>>>>>>")
     print("Save Video into Database!")
-    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     locationOfVideos = settings.MEDIA_ROOT + project.location + "videos/"
-
     fs = FileSystemStorage(location=locationOfVideos)
     fs.save(timestamp + uploaded_file.name, uploaded_file)
 
@@ -47,7 +45,6 @@ def objectDetectionLImages(user, project, model, timeF, uploaded_file, timestamp
                   user=user,
                   project=project)
     video.save()
-    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 
     model_path = settings.MEDIA_ROOT + model.location
     model = models.load_model(model_path, backbone_name='resnet50')

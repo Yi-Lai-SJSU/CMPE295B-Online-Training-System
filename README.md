@@ -7,7 +7,7 @@
 - [Introduction](#Introduction)
 - [Install](#Install)
 - [Demo](#Demo)
-- [System Architecture](#System Architecture)
+- [Architecture](#System-Architecture)
 - [Technologies](#Technologies)
 - [FAQ](#FAQ)
 

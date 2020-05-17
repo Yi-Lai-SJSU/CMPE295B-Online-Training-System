@@ -39,7 +39,7 @@ The backend of the Online Machine Learning System is mainly to provide online Ma
     
     For the object Detection, we call the API from [Keras implementation of RetinaNet object detection](https://github.com/fizyr/keras-retinanet).
     
-5. Dockerization of the Backend side of the web application
+5. [Dockerization](https://docs.docker.com/compose/django/) of the Backend side of the web application
 
     A common problem in the development process is the issue of environmental consistency. The Docker image provides a complete runtime environment in addition to the kernel, which ensures the consistency of the application runtime environment. Dockerization also enables more efficient and convenient ways to own local development environments that closely match the production environment. To facilitate the operation and maintenance of our project, we dockerize the backend of our web application.
 

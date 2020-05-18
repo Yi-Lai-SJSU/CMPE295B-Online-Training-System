@@ -29,11 +29,11 @@ $ cd MachineLearningStudio
 $ docker-compose up --build --force-recreate
 ```
 
-#### Demo
-##### Image Classification Demo recorded by Shikang Jin
+### Demo
+#### Image Classification Demo recorded by Shikang Jin
 [![Watch the video](https://img.youtube.com/vi/xX838IBlG2k/hqdefault.jpg)](https://youtu.be/xX838IBlG2k)
 
-##### Object Detection Demo recorded by Yi Lai
+#### Object Detection Demo recorded by Yi Lai
 [![Watch the video](https://img.youtube.com/vi/8ZqswtNSvWg/hqdefault.jpg)](https://youtu.be/8ZqswtNSvWg)
 
 
